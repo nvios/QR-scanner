@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>sennder Italia | POD Check</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/mTYCXjw/favicon-32x32.png"/>
+</head>
+<body>
+<!-- Modal Content -->
+<div class="modal">
+  <div class="modal-content">
+    <input class="creds" type="text" value="Magazzino 1">
+    <input type="password" placeholder="Password">
+    <button onclick="auth()">Login</button>
+  </div>
+  <div class="boxes">
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+</div> 
+<!-- Interface -->
+<h1 class="user"></h1>
+<input class="submit" type="text" placeholder="QR Code Content" onblur="focus(this)" onkeydown="submit(this)">
+<div class="scan-content">
+  <img class="check" src="#">
+  <h2 class="content"></h2>
+</div>
+<img class="logo" src="https://i.ibb.co/8M1rZZj/Horizontal-white.png"/>
+<img class="form" src="#"/>
+</body>
+<script type="text/javascript">
+function focus(element) {
+  setTimeout(() => {element.focus()}, 10);
+}
+function auth() {
+    const user = document.querySelector(".creds");
+    const submit = document.querySelector(".submit");
+    document.querySelector(".user").innerHTML = user.value; 
+    submit.value = "";
+    submit.focus();
+    document.querySelector(".modal").style.display = "none";
+}
+function submit(qr) {
+    if(event.key === 'Enter') {
+        const qrValue = qr.value
+        const params = ["id", "cr"]
+        const [id, cr] = params.map( param => new URLSearchParams(qrValue).get(param) )
+        const geolocation = document.querySelector(".user").innerHTML
+        const timestamp = Date.now();
+        if (!id || !cr) {
+          document.querySelector(".check").src = "https://i.ibb.co/Mf9RRXZ/fail.png"
+          document.querySelector(".content").innerHTML = `<b>Order ID : </b>${id}\n
+                                                          <b>Customer Reference : </b>${cr}\n`; 
+        } else {
+          document.querySelector(".check").src = "https://i.ibb.co/zmzyD3h/check.png"
+          document.querySelector(".content").innerHTML = `<b>Geolocation : </b>${geolocation}\n
+                                                          <b>Timestamp : </b>${timestamp}\n
+                                                          <b>Order ID : </b>${id}\n
+                                                          <b>Customer Reference : </b>${cr}\n`; 
+          document.querySelector(".form").src = `https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7gaN0WgZiafn2KFwpybWe2sVmoJASixFJocsOxnjmEhzcUA/formResponse?entry.595035757=${geolocation}&entry.735849849=${timestamp}&entry.442296377=${id}&entry.1547747460=${cr}`
+        }
+        document.querySelector(".submit").value = "";
+        document.querySelector(".scan-content").style.display = "block";
+    }
+}
+</script>
+</html>

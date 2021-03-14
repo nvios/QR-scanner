@@ -1,0 +1,245 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
+
+body {
+  min-height: 100vh;
+  color: #7e7e7e;
+  font-family: 'Poppins', sans-serif;
+  background: #d7dde2;
+  text-align: center;
+  margin: auto;
+}
+.boxes {
+  display: block;
+  margin: auto;
+  --size: 32px;
+  --duration: 800ms;
+  height: calc(var(--size) * 2);
+  width: calc(var(--size) * 3);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  margin-top: calc(var(--size) * 1.5 * -1);
+  transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
+}
+.boxes .box {
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.boxes .box:nth-child(1) {
+  transform: translate(100%, 0);
+  -webkit-animation: box1 var(--duration) linear infinite;
+          animation: box1 var(--duration) linear infinite;
+}
+.boxes .box:nth-child(2) {
+  transform: translate(0, 100%);
+  -webkit-animation: box2 var(--duration) linear infinite;
+          animation: box2 var(--duration) linear infinite;
+}
+.boxes .box:nth-child(3) {
+  transform: translate(100%, 100%);
+  -webkit-animation: box3 var(--duration) linear infinite;
+          animation: box3 var(--duration) linear infinite;
+}
+.boxes .box:nth-child(4) {
+  transform: translate(200%, 0);
+  -webkit-animation: box4 var(--duration) linear infinite;
+          animation: box4 var(--duration) linear infinite;
+}
+.boxes .box > div {
+  --background: #467df5;
+  --top: auto;
+  --right: auto;
+  --bottom: auto;
+  --left: auto;
+  --translateZ: calc(var(--size) / 2);
+  --rotateY: 0deg;
+  --rotateX: 0deg;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  top: var(--top);
+  right: var(--right);
+  bottom: var(--bottom);
+  left: var(--left);
+  transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
+}
+.boxes .box > div:nth-child(1) {
+  --top: 0;
+  --left: 0;
+}
+.boxes .box > div:nth-child(2) {
+  --background: #0e49c9;
+  --right: 0;
+  --rotateY: 90deg;
+}
+.boxes .box > div:nth-child(3) {
+  --background: #1b5be6;
+  --rotateX: -90deg;
+}
+.boxes .box > div:nth-child(4) {
+  --background: #c8cfdd;
+  --top: 0;
+  --left: 0;
+  --translateZ: calc(var(--size) * 3 * -1);
+}
+
+@-webkit-keyframes box1 {
+  0%, 50% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(200%, 0);
+  }
+}
+
+@keyframes box1 {
+  0%, 50% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(200%, 0);
+  }
+}
+@-webkit-keyframes box2 {
+  0% {
+    transform: translate(0, 100%);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+@keyframes box2 {
+  0% {
+    transform: translate(0, 100%);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+@-webkit-keyframes box3 {
+  0%, 50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
+}
+@keyframes box3 {
+  0%, 50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
+}
+@-webkit-keyframes box4 {
+  0% {
+    transform: translate(200%, 0);
+  }
+  50% {
+    transform: translate(200%, 100%);
+  }
+  100% {
+    transform: translate(100%, 100%);
+  }
+}
+@keyframes box4 {
+  0% {
+    transform: translate(200%, 0);
+  }
+  50% {
+    transform: translate(200%, 100%);
+  }
+  100% {
+    transform: translate(100%, 100%);
+  }
+}
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+.modal {
+  display: block; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #d7dde2;
+}
+.modal-content {
+  background-color: #ffffff;
+  box-shadow: 0 0 25px #00000011;
+  margin: 24vh auto;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 300px;
+}
+.scan-content {
+  display: none;
+  overflow: auto;
+  max-width: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 25px #00000011;
+  white-space: pre-line;
+  margin: 5vh auto;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+}
+.content {
+  font-weight: 300;
+  line-height: 20px;
+}
+.submit {
+  width: 0px;
+  height: 0px;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  color: #d7dde2;
+  background-color: #d7dde2;
+}
+.logo {
+  position: fixed;
+  display: block;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 20px;
+  filter: drop-shadow(0px 0px 35px #0000004f);
+  width: 320px;
+}
+.form {
+  opacity: 0;
+}
+.check {
+  width: 100px;
+}
+input, button {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
