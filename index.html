@@ -2,16 +2,16 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>sennder Italia | POD Check</title>
+  <title>sennder Italia | QR Scanner</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/mTYCXjw/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/WsbbcsD/favicon.png"/>
 </head>
 <body>
 <!-- Modal Content -->
 <div class="modal">
   <div class="modal-content">
-    <input class="creds" type="text" value="Magazzino 1">
-    <input type="password" placeholder="Password">
+    <input class="creds" type="text" value="Hub 1">
+    <input class="pwd" type="password" placeholder="Password">
     <button onclick="auth()">Login</button>
   </div>
   <div class="boxes">
@@ -58,10 +58,13 @@ function focus(element) {
 function auth() {
     const user = document.querySelector(".creds");
     const submit = document.querySelector(".submit");
-    document.querySelector(".user").innerHTML = user.value; 
-    submit.value = "";
-    submit.focus();
-    document.querySelector(".modal").style.display = "none";
+    const pwd = document.querySelector(".pwd").value;
+    if (pwd.length > 3) {
+      document.querySelector(".user").innerHTML = user.value; 
+      submit.value = "";
+      submit.focus();
+      document.querySelector(".modal").style.display = "none";
+    }
 }
 function submit(qr) {
     if(event.key === 'Enter') {
