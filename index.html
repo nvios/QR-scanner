@@ -75,8 +75,8 @@ function submit(qr) {
         const timestamp = Date.now();
         if (!id || !cr) {
           document.querySelector(".check").src = "https://i.ibb.co/Mf9RRXZ/fail.png"
-          document.querySelector(".content").innerHTML = `<b>Order ID : </b>${id}\n
-                                                          <b>Customer Reference : </b>${cr}\n`; 
+          document.querySelector(".content").innerHTML = `<b>Order ID : </b>Invalid [${id}]\n
+                                                          <b>Customer Reference : </b>Invalid [${cr}]\n`; 
         } else {
           document.querySelector(".check").src = "https://i.ibb.co/zmzyD3h/check.png"
           document.querySelector(".content").innerHTML = `<b>Geolocation : </b>${geolocation}\n
