@@ -82,6 +82,7 @@ function submit(qr) {
           document.querySelector(".content").innerHTML = `<b>Geolocation : </b>${geolocation}\n
                                                           <b>Timestamp : </b>${timestamp}\n
                                                           <b>Order ID : </b>${id}\n
+                                                          <b>License Plate: </b>FK823ND\n
                                                           <b>Customer Reference : </b>${cr}\n`; 
           document.querySelector(".form").src = `https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7gaN0WgZiafn2KFwpybWe2sVmoJASixFJocsOxnjmEhzcUA/formResponse?entry.595035757=${geolocation}&entry.735849849=${timestamp}&entry.442296377=${id}&entry.1547747460=${cr}`
         }
