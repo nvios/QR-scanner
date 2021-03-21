@@ -52,6 +52,7 @@
     <h2 class="seals"></h2>
     <h2 class="notes"></h2>
     <div class="submit-btn">
+      <button onclick="cancel()">Cancel</button>
       <button onclick="openNotes()">Add Notes</button>
       <button onclick="submit()">Submit</button>
     </div>
@@ -62,8 +63,8 @@
   <div class="notes-modal">
     <div class="notes-modal-content">
       <input class="notes-input" type="text" placeholder="Notes">
+      <button onclick="closeNotes()">Cancel</button>
       <button onclick="addNotes()">Save</button>
-      <button onclick="document.querySelector('.notes-modal').style.display = 'none'">Cancel</button>
     </div>
 </body>
 <script type="text/javascript" src="scripts.js"></script>
