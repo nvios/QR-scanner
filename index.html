@@ -1,94 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>sennder Italia | QR Scanner</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="https://i.ibb.co/WsbbcsD/favicon.png"/>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/WsbbcsD/favicon.png" />
 </head>
+
 <body>
-<!-- Modal Content -->
-<div class="modal">
-  <div class="modal-content">
-    <input class="creds" type="text" value="Hub 1">
-    <input class="pwd" type="password" placeholder="Password">
-    <button onclick="auth()">Login</button>
+  <!-- Modal Content -->
+  <div class="modal">
+    <div class="modal-content">
+      <input class="creds" type="text" value="Hub 1">
+      <input class="pwd" type="password" placeholder="Password"
+        onkeydown="if (event.key === 'Enter') document.getElementById('login').click()">
+      <button id="login" onclick="auth()">Login</button>
+    </div>
+    <div class="boxes">
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </div>
-  <div class="boxes">
-    <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+  <!-- Interface -->
+  <h1 class="user"></h1>
+  <input class="submit" type="text" onblur="focusSubmit()" onkeydown="localStorage.getItem('qrEnabled') === 'true' ? display(this) : addSeal(this)">
+  <div class="scan-content">
+    <img class="check" src="#">
+    <h2 class="content"></h2>
+    <h2 class="seals"></h2>
+    <h2 class="notes"></h2>
+    <div class="submit-btn">
+      <button onclick="openNotes()">Add Notes</button>
+      <button onclick="submit()">Submit</button>
     </div>
-    <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+  </div>
+  <img class="logo" src="https://i.ibb.co/8M1rZZj/Horizontal-white.png" />
+  <img class="form" src="#" />
+  <!-- Notes Modal -->
+  <div class="notes-modal">
+    <div class="notes-modal-content">
+      <input class="notes-input" type="text" placeholder="Notes">
+      <button onclick="addNotes()">Save</button>
+      <button onclick="document.querySelector('.notes-modal').style.display = 'none'">Cancel</button>
     </div>
-    <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-</div> 
-<!-- Interface -->
-<h1 class="user"></h1>
-<input class="submit" type="text" placeholder="QR Code Content" onblur="focus(this)" onkeydown="submit(this)">
-<div class="scan-content">
-  <img class="check" src="#">
-  <h2 class="content"></h2>
-</div>
-<img class="logo" src="https://i.ibb.co/8M1rZZj/Horizontal-white.png"/>
-<img class="form" src="#"/>
 </body>
-<script type="text/javascript">
-function focus(element) {
-  setTimeout(() => {element.focus()}, 10);
-}
-function auth() {
-    const user = document.querySelector(".creds");
-    const submit = document.querySelector(".submit");
-    const pwd = document.querySelector(".pwd").value;
-    if (pwd.length > 3) {
-      document.querySelector(".user").innerHTML = user.value; 
-      submit.value = "";
-      submit.focus();
-      document.querySelector(".modal").style.display = "none";
-    }
-}
-function submit(qr) {
-    if(event.key === 'Enter') {
-        const qrValue = qr.value
-        const params = ["id", "cr"]
-        const [id, cr] = params.map( param => new URLSearchParams(qrValue).get(param) )
-        const geolocation = document.querySelector(".user").innerHTML
-        const timestamp = Date.now();
-        if (!id || !cr) {
-          document.querySelector(".check").src = "https://i.ibb.co/Mf9RRXZ/fail.png"
-          document.querySelector(".content").innerHTML = `<b>Order ID : </b>Invalid [${id}]\n
-                                                          <b>Customer Reference : </b>Invalid [${cr}]\n`; 
-        } else {
-          document.querySelector(".check").src = "https://i.ibb.co/zmzyD3h/check.png"
-          document.querySelector(".content").innerHTML = `<b>Geolocation : </b>${geolocation}\n
-                                                          <b>Timestamp : </b>${timestamp}\n
-                                                          <b>Order ID : </b>${id}\n
-                                                          <b>License Plate: </b>FK823ND\n
-                                                          <b>Customer Reference : </b>${cr}\n`; 
-          document.querySelector(".form").src = `https://docs.google.com/forms/u/0/d/e/1FAIpQLSd7gaN0WgZiafn2KFwpybWe2sVmoJASixFJocsOxnjmEhzcUA/formResponse?entry.595035757=${geolocation}&entry.735849849=${timestamp}&entry.442296377=${id}&entry.1547747460=${cr}`
-        }
-        document.querySelector(".submit").value = "";
-        document.querySelector(".scan-content").style.display = "block";
-    }
-}
-</script>
+<script type="text/javascript" src="scripts.js"></script>
 </html>
